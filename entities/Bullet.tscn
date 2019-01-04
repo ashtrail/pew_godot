@@ -6,9 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 62.9793
+radius = 50.4703
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" index="0"]
 
 z_index = 2
 input_pickable = false
@@ -30,7 +30,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -38,6 +38,7 @@ SPEED = 1200
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
