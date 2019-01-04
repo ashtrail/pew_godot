@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://sprites/bullet_player.png" type="Texture" id=2]
+[ext_resource path="res://sprites/bullet.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 3.82567
+radius = 62.9793
 
 [node name="Bullet" type="RigidBody2D"]
 
@@ -31,7 +31,10 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Z Index" ]
-SPEED = 100
+__meta__ = {
+"_edit_group_": true
+}
+SPEED = 1200
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

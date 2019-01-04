@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export (int) var SPEED
+export (int) var SPEED = 1500
 
 func _ready():
 	add_to_group('bullets')

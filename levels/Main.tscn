@@ -10,30 +10,31 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 16.7983, 14.9614, 0, 0, 0, 0, 173.73, 14.3543, 0, 0, 0, 0, 175.551, 144.544, 0, 0, 0, 0, 16.1912, 144.847, 0, 0, 0, 0, 16.7983, 14.9614 )
+"points": PoolVector2Array( 0, 0, 0, 0, 236.449, 242.515, 0, 0, 0, 0, 2652.49, 229.432, 0, 0, 0, 0, 2656.85, 2165.75, 0, 0, 0, 0, 245.171, 2174.47, 0, 0, 0, 0, 232.088, 233.793 )
 }
 
 [sub_resource type="SegmentShape2D" id=2]
 
 custom_solver_bias = 0.0
 a = Vector2( 0, 0 )
-b = Vector2( 0, 160 )
+b = Vector2( 0, 2400 )
 
 [sub_resource type="SegmentShape2D" id=3]
 
 custom_solver_bias = 0.0
 a = Vector2( -192, 0 )
-b = Vector2( 0, 0 )
+b = Vector2( 2688, 0 )
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 Enemy = ExtResource( 2 )
 
 [node name="Player" parent="." index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 96.2306, 79.5412 )
-SPEED = 40
+position = Vector2( 1440, 1200 )
+scale = Vector2( 0.8, 0.8 )
+SPEED = 500
 
 [node name="Enemies" type="YSort" parent="." index="1"]
 
@@ -53,8 +54,8 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="PathFollow" type="PathFollow2D" parent="SpawnZone" index="0"]
 
-position = Vector2( 16.7983, 14.9614 )
-rotation = -0.00386858
+position = Vector2( 236.449, 242.515 )
+rotation = -0.00540822
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -109,6 +110,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="left" type="CollisionShape2D" parent="WorldBoundaries" index="0"]
 
@@ -116,7 +118,7 @@ shape = SubResource( 2 )
 
 [node name="right" type="CollisionShape2D" parent="WorldBoundaries" index="1"]
 
-position = Vector2( 192, 0 )
+position = Vector2( 2880, 0 )
 shape = SubResource( 2 )
 
 [node name="top" type="CollisionShape2D" parent="WorldBoundaries" index="2"]
@@ -126,7 +128,7 @@ shape = SubResource( 3 )
 
 [node name="bottom" type="CollisionShape2D" parent="WorldBoundaries" index="3"]
 
-position = Vector2( 192, 160 )
+position = Vector2( 240, 2400 )
 shape = SubResource( 3 )
 
 [connection signal="game_over" from="Player" to="." method="_on_Player_game_over"]

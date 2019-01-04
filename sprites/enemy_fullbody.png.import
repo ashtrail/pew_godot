@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy.png-03f80dfd1208a1b3024d79304d31759f.stex"
+path="res://.import/enemy_fullbody.png-a23e21d359a0bcff6a86ec4662f9bf84.stex"
 
 [deps]
 
-source_file="res://sprites/enemy.png"
-dest_files=[ "res://.import/enemy.png-03f80dfd1208a1b3024d79304d31759f.stex" ]
+source_file="res://sprites/enemy_fullbody.png"
+dest_files=[ "res://.import/enemy_fullbody.png-a23e21d359a0bcff6a86ec4662f9bf84.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

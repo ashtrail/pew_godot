@@ -13,3 +13,4 @@ export_presets.cfg
 # Project specific
 **/build/*
 todo.txt
+**/*.clip

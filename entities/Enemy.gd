@@ -1,8 +1,8 @@
 extends Area2D
 
-export (int) var SPEED
-export (int) var CONTACT_DAMAGE
-export (int) var SCORE_VALUE
+export (int) var SPEED = 150
+export (int) var CONTACT_DAMAGE = 1
+export (int) var SCORE_VALUE = 1
 
 signal died(score_value)
 var target
@@ -23,10 +23,10 @@ func reset_direction():
 		0:
 			if target.position.x > position.x:
 				direction.x = 1
-				$Sprite.flip_h = false
+				$Sprite.flip_h = true
 			else:
 				direction.x = -1
-				$Sprite.flip_h = true
+				$Sprite.flip_h = false
 		1:
 			direction.y = 1 if target.position.y > position.y else -1
 

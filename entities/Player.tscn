@@ -2,17 +2,16 @@
 
 [ext_resource path="res://entities/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/player.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player_fullbody.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 5.45826
+radius = 89.8103
 
 [node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 4.05205, -0.0920916 )
-z_index = 1
 input_pickable = false
 collision_layer = 1
 collision_mask = 4
@@ -22,7 +21,7 @@ _sections_unfolded = [ "Collision", "Pause", "Transform", "Z Index", "collision"
 __meta__ = {
 "_edit_group_": true
 }
-SPEED = 20
+SPEED = 600
 Bullet = ExtResource( 2 )
 MAX_HP = 3
 
@@ -33,6 +32,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( -6.57053, -8.95982 )
 shape = SubResource( 1 )
 
 [node name="FireRate" type="Timer" parent="." index="2"]

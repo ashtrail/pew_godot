@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-f534b8a02ffb80eefc72936296201445.stex"
+path="res://.import/bullet.png-bf127d53460a0826f847c19a5a1ace6c.stex"
 
 [deps]
 
-source_file="res://sprites/player.png"
-dest_files=[ "res://.import/player.png-f534b8a02ffb80eefc72936296201445.stex" ]
+source_file="res://sprites/bullet.png"
+dest_files=[ "res://.import/bullet.png-bf127d53460a0826f847c19a5a1ace6c.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

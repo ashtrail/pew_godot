@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://sprites/enemy.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy_fullbody.png" type="Texture" id=2]
 
 [node name="Enemy" type="Area2D"]
 
+z_index = 1
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -15,30 +16,32 @@ collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
-SPEED = 10
+SPEED = 150
 CONTACT_DAMAGE = 1
 SCORE_VALUE = 1
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Z Index" ]
+flip_h = true
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
-
-build_mode = 0
-polygon = PoolVector2Array( -3.01028, -6.92609, -7.97846, -0.954478, -8.00294, 2.98581, -4.13607, 5.0416, -4.03818, 7.95399, -1.00343, 8.05188, -1.00343, 6.06951, 1.0279, 6.02056, 1.05237, 8.00294, 3.94028, 7.92952, 3.98923, 5.09055, 7.95399, 3.03475, 8.02741, -0.954478, 2.96133, -7.02398 )
-
-[node name="ResetDirection" type="Timer" parent="." index="2"]
+[node name="ResetDirection" type="Timer" parent="." index="1"]
 
 process_mode = 1
 wait_time = 0.5
 one_shot = false
 autostart = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -40.3067, -129.26, -22.7232, -137.074, 19.7702, -138.784, 44.6801, -126.329, 61.5309, -83.8356, 62.9962, -17.8976, 56.8909, -14.2344, 68.6132, 50.2384, 67.1479, 68.5545, 89.6157, 82.9632, 96.6979, 99.0813, 85.9524, 121.305, 65.1942, 131.074, 58.6004, 136.69, 15.1301, 136.69, -31.5149, 117.642, -42.2604, 111.781, -46.6563, 79.5442, -24.4327, 62.6933, -24.9211, 48.2847, -40.5509, 45.5983, -58.3786, 70.0198, -82.0674, 72.2177, -96.2319, 60.7396, -96.7203, 41.6908, -84.998, 33.3875, -68.3914, 39.0045, -63.7513, 33.1433, -68.8798, 15.0714, -87.4402, 27.7706, -103.314, 18.4904, -106.245, -7.88478, -74.741, -26.4451, -49.5869, -12.5249, -62.286, -91.1621 )
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 
