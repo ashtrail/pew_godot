@@ -1,7 +1,129 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy_fullbody.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/enemy_body.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/enemy_head.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy/enemy_arm.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy/enemy_hand_patella.png" type="Texture" id=7]
+[ext_resource path="res://sprites/enemy/enemy_hand_bottom-plier.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemy/enemy_hand_top-plier.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "idle"
+length = 1.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Wheels:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.84111, 0.0, -3.65071, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7.41837, -20.3838 ), Vector2( 7.41837, -12.23 ), Vector2( 7.41837, -20.3838 ), Vector2( 6.96536, -19.4778 ), Vector2( 7.41837, -20.3838 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Head:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -6.91167, 0.0, 9.5588, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Arm:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -5.26523, 19.4789 ), Vector2( -18.2213, 19.4789 ), Vector2( -5.26523, 19.4789 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Arm:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1124, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Arm/Hand/TopPlier:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 37.0646, -8.5521, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Arm/Hand/BottomPlier:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -22.9658, 12.0082, 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Body:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Body/Wheels:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 17.2134, 90.1441 ), Vector2( 17.2134, 85.1613 ), Vector2( 17.2134, 90.1441 ), Vector2( 17.2134, 98.2978 ), Vector2( 17.2134, 90.1441 ) ]
+}
 
 [node name="Enemy" type="Area2D"]
 
@@ -17,17 +139,14 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
 SPEED = 150
 CONTACT_DAMAGE = 1
 SCORE_VALUE = 1
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+visible = false
 texture = ExtResource( 2 )
-flip_h = true
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="ResetDirection" type="Timer" parent="." index="1"]
@@ -42,6 +161,66 @@ autostart = true
 visible = false
 build_mode = 0
 polygon = PoolVector2Array( -40.3067, -129.26, -22.7232, -137.074, 19.7702, -138.784, 44.6801, -126.329, 61.5309, -83.8356, 62.9962, -17.8976, 56.8909, -14.2344, 68.6132, 50.2384, 67.1479, 68.5545, 89.6157, 82.9632, 96.6979, 99.0813, 85.9524, 121.305, 65.1942, 131.074, 58.6004, 136.69, 15.1301, 136.69, -31.5149, 117.642, -42.2604, 111.781, -46.6563, 79.5442, -24.4327, 62.6933, -24.9211, 48.2847, -40.5509, 45.5983, -58.3786, 70.0198, -82.0674, 72.2177, -96.2319, 60.7396, -96.7203, 41.6908, -84.998, 33.3875, -68.3914, 39.0045, -63.7513, 33.1433, -68.8798, 15.0714, -87.4402, 27.7706, -103.314, 18.4904, -106.245, -7.88478, -74.741, -26.4451, -49.5869, -12.5249, -62.286, -91.1621 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/idle = SubResource( 1 )
+blend_times = [  ]
+
+[node name="Body" type="Sprite" parent="." index="4"]
+
+[node name="Wheels" type="Sprite" parent="Body" index="0"]
+
+position = Vector2( 17.2134, 91.3176 )
+rotation = -0.00917064
+texture = ExtResource( 3 )
+offset = Vector2( -17.2934, -99.3856 )
+
+[node name="Chest" type="Sprite" parent="Body" index="1"]
+
+position = Vector2( 20.102, 38.9573 )
+texture = ExtResource( 4 )
+offset = Vector2( -20.102, -38.9573 )
+
+[node name="Head" type="Sprite" parent="Body" index="2"]
+
+position = Vector2( 7.35317, -20.2534 )
+rotation = 0.0240118
+texture = ExtResource( 5 )
+offset = Vector2( -1.62018, 7.3378 )
+
+[node name="Arm" type="Sprite" parent="Body" index="3"]
+
+position = Vector2( -6.19759, 19.4789 )
+scale = Vector2( 1.00809, 1 )
+texture = ExtResource( 6 )
+offset = Vector2( 5.26523, -19.4789 )
+
+[node name="Hand" type="Sprite" parent="Body/Arm" index="0"]
+
+position = Vector2( -49.8284, 3.1709 )
+texture = ExtResource( 7 )
+offset = Vector2( 55.0936, -22.6498 )
+
+[node name="BottomPlier" type="Sprite" parent="Body/Arm/Hand" index="0"]
+
+position = Vector2( 0.905945, 9.96567 )
+rotation = 0.0150824
+texture = ExtResource( 8 )
+offset = Vector2( 52.357, -32.6155 )
+
+[node name="TopPlier" type="Sprite" parent="Body/Arm/Hand" index="1"]
+
+position = Vector2( -1.35898, -14.9485 )
+rotation = -0.0107415
+texture = ExtResource( 9 )
+offset = Vector2( 56.4526, -7.70132 )
+_sections_unfolded = [ "Animation", "Region" ]
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 

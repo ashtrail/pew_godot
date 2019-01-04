@@ -3,7 +3,7 @@
 [ext_resource path="res://themes/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://levels/GameOver.gd" type="Script" id=2]
 
-[node name="GameOver" type="Control" index="0"]
+[node name="GameOver" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0

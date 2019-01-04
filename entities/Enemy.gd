@@ -10,6 +10,7 @@ var direction = Vector2()
 
 func _ready():
 	add_to_group('enemies')
+	$AnimationPlayer.play('idle')
 
 func _process(delta):
 	position += direction * SPEED * delta
@@ -23,10 +24,10 @@ func reset_direction():
 		0:
 			if target.position.x > position.x:
 				direction.x = 1
-				$Sprite.flip_h = true
+				$Body.scale = Vector2(-1, 1)
 			else:
 				direction.x = -1
-				$Sprite.flip_h = false
+				$Body.scale = Vector2(1, 1)
 		1:
 			direction.y = 1 if target.position.y > position.y else -1
 
