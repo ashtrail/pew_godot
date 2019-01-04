@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/Main.gd" type="Script" id=1]
 [ext_resource path="res://entities/Enemy.tscn" type="PackedScene" id=2]
@@ -12,6 +12,18 @@ bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 16.7983, 14.9614, 0, 0, 0, 0, 173.73, 14.3543, 0, 0, 0, 0, 175.551, 144.544, 0, 0, 0, 0, 16.1912, 144.847, 0, 0, 0, 0, 16.7983, 14.9614 )
 }
+
+[sub_resource type="SegmentShape2D" id=2]
+
+custom_solver_bias = 0.0
+a = Vector2( 0, 0 )
+b = Vector2( 0, 160 )
+
+[sub_resource type="SegmentShape2D" id=3]
+
+custom_solver_bias = 0.0
+a = Vector2( -192, 0 )
+b = Vector2( 0, 0 )
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -61,7 +73,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="HUD" parent="UI" index="0" instance=ExtResource( 4 )]
 
-_sections_unfolded = [ "Material", "Theme", "Visibility" ]
+_sections_unfolded = [ "Grow Direction", "Material", "Rect", "Theme", "Visibility" ]
 
 [node name="SpawnTimer" parent="." index="5" instance=ExtResource( 5 )]
 
@@ -86,6 +98,36 @@ INITIAL_DELAY = 3.0
 GOAL_DELAY = 0.5
 INITIAL_RATE = 1
 TYPE = 0
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="." index="8"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="left" type="CollisionShape2D" parent="WorldBoundaries" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="right" type="CollisionShape2D" parent="WorldBoundaries" index="1"]
+
+position = Vector2( 192, 0 )
+shape = SubResource( 2 )
+
+[node name="top" type="CollisionShape2D" parent="WorldBoundaries" index="2"]
+
+position = Vector2( 192, 0 )
+shape = SubResource( 3 )
+
+[node name="bottom" type="CollisionShape2D" parent="WorldBoundaries" index="3"]
+
+position = Vector2( 192, 160 )
+shape = SubResource( 3 )
 
 [connection signal="game_over" from="Player" to="." method="_on_Player_game_over"]
 
