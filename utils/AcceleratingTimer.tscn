@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://utils/AcceleratingTimer.gd" type="Script" id=1]
+
+[node name="AcceleratingTimer" type="Timer"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+script = ExtResource( 1 )
+INITIAL_DELAY = 1.0
+GOAL_DELAY = 1.0
+INITIAL_RATE = 20
+RATE_INCREASE = 0
+TYPE = null
+AUTOMATIC = false
+
+[connection signal="timeout" from="." to="." method="_on_Timer_timeout"]
+
+

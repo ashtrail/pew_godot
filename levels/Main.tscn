@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://levels/Main.gd" type="Script" id=1]
+[ext_resource path="res://entities/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://utils/AcceleratingTimer.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 16.7983, 14.9614, 0, 0, 0, 0, 173.73, 14.3543, 0, 0, 0, 0, 175.551, 144.544, 0, 0, 0, 0, 16.1912, 144.847, 0, 0, 0, 0, 16.7983, 14.9614 )
+}
+
+[node name="Main" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+Enemy = ExtResource( 2 )
+
+[node name="Player" parent="." index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 96.2306, 79.5412 )
+SPEED = 40
+
+[node name="Enemies" type="YSort" parent="." index="1"]
+
+sort_enabled = true
+
+[node name="Bullets" type="YSort" parent="." index="2"]
+
+sort_enabled = true
+_sections_unfolded = [ "Sort" ]
+
+[node name="SpawnZone" type="Path2D" parent="." index="3"]
+
+editor/display_folded = true
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="PathFollow" type="PathFollow2D" parent="SpawnZone" index="0"]
+
+position = Vector2( 16.7983, 14.9614 )
+rotation = -0.00386858
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="UI" type="CanvasLayer" parent="." index="4"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="HUD" parent="UI" index="0" instance=ExtResource( 4 )]
+
+_sections_unfolded = [ "Material", "Theme", "Visibility" ]
+
+[node name="SpawnTimer" parent="." index="5" instance=ExtResource( 5 )]
+
+autostart = true
+INITIAL_DELAY = 3.0
+GOAL_DELAY = 0.5
+INITIAL_RATE = 1
+TYPE = 0
+
+[node name="SpawnTimer2" parent="." index="6" instance=ExtResource( 5 )]
+
+autostart = true
+INITIAL_DELAY = 3.0
+GOAL_DELAY = 0.5
+INITIAL_RATE = 1
+TYPE = 0
+
+[node name="SpawnTimer3" parent="." index="7" instance=ExtResource( 5 )]
+
+autostart = true
+INITIAL_DELAY = 3.0
+GOAL_DELAY = 0.5
+INITIAL_RATE = 1
+TYPE = 0
+
+[connection signal="game_over" from="Player" to="." method="_on_Player_game_over"]
+
+[connection signal="hp_updated" from="Player" to="UI/HUD" method="_on_Player_hp_updated"]
+
+[connection signal="score_updated" from="Player" to="UI/HUD" method="_on_Player_score_updated"]
+
+[connection signal="score_updated" from="Player" to="." method="_on_Player_score_updated"]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+
+[connection signal="timeout" from="SpawnTimer2" to="." method="_on_SpawnTimer_timeout"]
+
+[connection signal="timeout" from="SpawnTimer3" to="." method="_on_SpawnTimer_timeout"]
+
+
