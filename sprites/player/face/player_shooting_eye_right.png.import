@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_fullbody.png-d1704f4454deb623bcd25b21c384e92a.stex"
+path="res://.import/player_shooting_eye_right.png-5cd88de38c114cec6d8189e11414aa0c.stex"
 
 [deps]
 
-source_file="res://sprites/player_fullbody.png"
-dest_files=[ "res://.import/player_fullbody.png-d1704f4454deb623bcd25b21c384e92a.stex" ]
+source_file="res://sprites/player/face/player_shooting_eye_right.png"
+dest_files=[ "res://.import/player_shooting_eye_right.png-5cd88de38c114cec6d8189e11414aa0c.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

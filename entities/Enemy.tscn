@@ -1,14 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://sprites/enemy_fullbody.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=3]
-[ext_resource path="res://sprites/enemy/enemy_body.png" type="Texture" id=4]
-[ext_resource path="res://sprites/enemy/enemy_head.png" type="Texture" id=5]
-[ext_resource path="res://sprites/enemy/enemy_arm.png" type="Texture" id=6]
-[ext_resource path="res://sprites/enemy/enemy_hand_patella.png" type="Texture" id=7]
-[ext_resource path="res://sprites/enemy/enemy_hand_bottom-plier.png" type="Texture" id=8]
-[ext_resource path="res://sprites/enemy/enemy_hand_top-plier.png" type="Texture" id=9]
+[ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/enemy_body.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/enemy_head.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/enemy_arm.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy/enemy_hand_patella.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy/enemy_hand_bottom-plier.png" type="Texture" id=7]
+[ext_resource path="res://sprites/enemy/enemy_hand_top-plier.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -143,26 +142,20 @@ SPEED = 150
 CONTACT_DAMAGE = 1
 SCORE_VALUE = 1
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
-visible = false
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
-
-[node name="ResetDirection" type="Timer" parent="." index="1"]
+[node name="ResetDirection" type="Timer" parent="." index="0"]
 
 process_mode = 1
 wait_time = 0.5
 one_shot = false
 autostart = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
 visible = false
 build_mode = 0
 polygon = PoolVector2Array( -40.3067, -129.26, -22.7232, -137.074, 19.7702, -138.784, 44.6801, -126.329, 61.5309, -83.8356, 62.9962, -17.8976, 56.8909, -14.2344, 68.6132, 50.2384, 67.1479, 68.5545, 89.6157, 82.9632, 96.6979, 99.0813, 85.9524, 121.305, 65.1942, 131.074, 58.6004, 136.69, 15.1301, 136.69, -31.5149, 117.642, -42.2604, 111.781, -46.6563, 79.5442, -24.4327, 62.6933, -24.9211, 48.2847, -40.5509, 45.5983, -58.3786, 70.0198, -82.0674, 72.2177, -96.2319, 60.7396, -96.7203, 41.6908, -84.998, 33.3875, -68.3914, 39.0045, -63.7513, 33.1433, -68.8798, 15.0714, -87.4402, 27.7706, -103.314, 18.4904, -106.245, -7.88478, -74.741, -26.4451, -49.5869, -12.5249, -62.286, -91.1621 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -172,53 +165,53 @@ playback_speed = 1.0
 anims/idle = SubResource( 1 )
 blend_times = [  ]
 
-[node name="Body" type="Sprite" parent="." index="4"]
+[node name="Body" type="Sprite" parent="." index="3"]
 
 [node name="Wheels" type="Sprite" parent="Body" index="0"]
 
-position = Vector2( 17.2134, 91.3176 )
-rotation = -0.00917064
-texture = ExtResource( 3 )
+position = Vector2( 17.2134, 89.4398 )
+rotation = 0.00454162
+texture = ExtResource( 2 )
 offset = Vector2( -17.2934, -99.3856 )
 
 [node name="Chest" type="Sprite" parent="Body" index="1"]
 
 position = Vector2( 20.102, 38.9573 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 offset = Vector2( -20.102, -38.9573 )
 
 [node name="Head" type="Sprite" parent="Body" index="2"]
 
-position = Vector2( 7.35317, -20.2534 )
-rotation = 0.0240118
-texture = ExtResource( 5 )
+position = Vector2( 7.41837, -19.2314 )
+rotation = -0.0170496
+texture = ExtResource( 4 )
 offset = Vector2( -1.62018, 7.3378 )
 
 [node name="Arm" type="Sprite" parent="Body" index="3"]
 
-position = Vector2( -6.19759, 19.4789 )
-scale = Vector2( 1.00809, 1 )
-texture = ExtResource( 6 )
+position = Vector2( -6.18081, 19.4789 )
+scale = Vector2( 1.00794, 1 )
+texture = ExtResource( 5 )
 offset = Vector2( 5.26523, -19.4789 )
 
 [node name="Hand" type="Sprite" parent="Body/Arm" index="0"]
 
 position = Vector2( -49.8284, 3.1709 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 55.0936, -22.6498 )
 
 [node name="BottomPlier" type="Sprite" parent="Body/Arm/Hand" index="0"]
 
 position = Vector2( 0.905945, 9.96567 )
-rotation = 0.0150824
-texture = ExtResource( 8 )
+rotation = -0.0566515
+texture = ExtResource( 7 )
 offset = Vector2( 52.357, -32.6155 )
 
 [node name="TopPlier" type="Sprite" parent="Body/Arm/Hand" index="1"]
 
 position = Vector2( -1.35898, -14.9485 )
-rotation = -0.0107415
-texture = ExtResource( 9 )
+rotation = 0.0914301
+texture = ExtResource( 8 )
 offset = Vector2( 56.4526, -7.70132 )
 _sections_unfolded = [ "Animation", "Region" ]
 

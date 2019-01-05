@@ -4,6 +4,8 @@ export (PackedScene) var Enemy
 
 func _ready():
 	randomize()
+	$Player.connect('game_over', self, '_on_Player_game_over')
+	$Player.connect('score_updated', self, '_on_Player_score_updated')
 
 func spawn_enemy():
 	$SpawnZone/PathFollow.set_offset(randi())

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export (int) var SPEED = 20
-export (PackedScene) var Bullet
+export (int) var SPEED = 600
+export (PackedScene) var Bullet = preload("res://entities/Bullet.tscn")
 export (int) var MAX_HP = 3
 
 signal hp_updated(hp)
@@ -12,6 +12,7 @@ var velocity = Vector2()
 var screen_size
 var hp
 var score = 0
+var moving = false
 
 func _ready():
 	add_to_group('player')
@@ -19,10 +20,13 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	emit_signal('score_updated', score)
 	emit_signal('hp_updated', hp)
+	$BodyAnimator.play('idle')
+	$FaceAnimator.play('idle')
 
 func shoot():
 	if not $FireRate.is_stopped():
 		return
+	$FaceAnimator.play('shooting')
 	var bullet_dir = -(position - get_global_mouse_position())
 	var bullet = Bullet.instance()
 	get_parent().add_child(bullet)
@@ -40,6 +44,15 @@ func get_input():
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * SPEED
+	
+	if velocity.length() > 0:
+		if not moving:
+			$BodyAnimator.play('moving')
+		moving = true
+	else:
+		if moving:
+			$BodyAnimator.play('idle')
+		moving = false
 
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -61,3 +74,8 @@ func take_damage(damage):
 
 func die():
 	emit_signal('game_over')
+
+
+func _on_FaceAnimator_animation_finished(anim_name):
+	if anim_name == 'shooting':
+		$FaceAnimator.play('idle')

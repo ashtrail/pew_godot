@@ -34,7 +34,6 @@ Enemy = ExtResource( 2 )
 
 position = Vector2( 1440, 1200 )
 scale = Vector2( 0.8, 0.8 )
-SPEED = 500
 
 [node name="Enemies" type="YSort" parent="." index="1"]
 
@@ -55,7 +54,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [node name="PathFollow" type="PathFollow2D" parent="SpawnZone" index="0"]
 
 position = Vector2( 236.449, 242.515 )
-rotation = -0.00540822
+rotation = -0.0054043
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -135,9 +134,9 @@ shape = SubResource( 3 )
 
 [connection signal="hp_updated" from="Player" to="UI/HUD" method="_on_Player_hp_updated"]
 
-[connection signal="score_updated" from="Player" to="UI/HUD" method="_on_Player_score_updated"]
-
 [connection signal="score_updated" from="Player" to="." method="_on_Player_score_updated"]
+
+[connection signal="score_updated" from="Player" to="UI/HUD" method="_on_Player_score_updated"]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 

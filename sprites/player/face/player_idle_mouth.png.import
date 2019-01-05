@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_fullbody.png-a23e21d359a0bcff6a86ec4662f9bf84.stex"
+path="res://.import/player_idle_mouth.png-bfdff5d1aab5668b7494a364f370d4c6.stex"
 
 [deps]
 
-source_file="res://sprites/enemy_fullbody.png"
-dest_files=[ "res://.import/enemy_fullbody.png-a23e21d359a0bcff6a86ec4662f9bf84.stex" ]
+source_file="res://sprites/player/face/player_idle_mouth.png"
+dest_files=[ "res://.import/player_idle_mouth.png-bfdff5d1aab5668b7494a364f370d4c6.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
