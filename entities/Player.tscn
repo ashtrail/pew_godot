@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://entities/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/Bullet.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://sprites/player/face/player_shooting_mouth.png" type="Texture" id=12]
 [ext_resource path="res://sprites/player/face/player_shooting_eye_left.png" type="Texture" id=13]
 [ext_resource path="res://sprites/player/face/player_shooting_eye_right.png" type="Texture" id=14]
+[ext_resource path="res://sprites/player/dust.png" type="Texture" id=15]
 
 [sub_resource type="Animation" id=1]
 
@@ -516,6 +517,84 @@ tracks/6/keys = {
 custom_solver_bias = 0.0
 radius = 89.8103
 
+[sub_resource type="Curve" id=6]
+
+min_value = -360.0
+max_value = 360.0
+bake_resolution = 100
+_data = [ Vector2( 0, 7.21124 ), 0.0, 0.0, 0, 0, Vector2( 0.997667, -95.8065 ), 232.399, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+
+flags = 4
+width = 2048
+curve = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+
+offsets = PoolRealArray( 0.524887, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+
+flags = 4
+gradient = SubResource( 8 )
+width = 2048
+
+[sub_resource type="Curve" id=10]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5186 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+
+flags = 4
+width = 2048
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+
+render_priority = 0
+trail_divisor = 2
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 2.75506e-39
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 1.0
+angle_curve = SubResource( 7 )
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Color", "Gravity", "Scale" ]
+
 [node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 4.05205, -0.0920916 )
@@ -538,6 +617,7 @@ autostart = false
 
 [node name="Body" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 rotation = -0.00118727
 
 [node name="Chest" type="Sprite" parent="Body" index="0"]
@@ -633,6 +713,30 @@ blend_times = [  ]
 visible = false
 position = Vector2( -6.57053, -8.95982 )
 shape = SubResource( 5 )
+
+[node name="Trail" type="Particles2D" parent="." index="6"]
+
+show_behind_parent = true
+position = Vector2( -8.15862, -1.20722 )
+emitting = true
+amount = 3
+lifetime = 0.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 12 )
+texture = ExtResource( 15 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
 [connection signal="animation_finished" from="FaceAnimator" to="." method="_on_FaceAnimator_animation_finished"]
 
