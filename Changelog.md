@@ -13,3 +13,16 @@
 - enemies are regularly spawned on the map
 - enemy spawn timer decreases over time
 - ennemy Y SORT
+
+# RELEASE v1.1
+
+This release was mostly centered around graphics with new sprites, animations and particle effects.
+
+- add world boundaries
+- swap graphics from pixel to hand drawn
+- add reticule
+- add enemy idle animation
+- add player idle, move and shoot animations
+- add enemy spawn animation
+- add trail behind player
+- add enemy death animation
