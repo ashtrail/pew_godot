@@ -598,6 +598,7 @@ _sections_unfolded = [ "Angle", "Color", "Gravity", "Scale" ]
 [node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 4.05205, -0.0920916 )
+z_index = 1
 input_pickable = false
 collision_layer = 1
 collision_mask = 4

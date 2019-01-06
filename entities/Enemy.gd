@@ -46,4 +46,10 @@ func _on_Enemy_body_entered(body):
 
 func die():
 	emit_signal('died', SCORE_VALUE)
+	direction = Vector2()
+	$ResetDirection.stop()
+	$CollisionPolygon2D.disabled = true
+	z_index = 0
+	$AnimationPlayer.play('death')
+	yield($AnimationPlayer, 'animation_finished')
 	queue_free()
