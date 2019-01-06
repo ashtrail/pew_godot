@@ -10,7 +10,12 @@ var direction = Vector2()
 
 func _ready():
 	add_to_group('enemies')
+	$CollisionPolygon2D.disabled = true
+	$AnimationPlayer.play('spawn')
+	yield($AnimationPlayer, 'animation_finished')
+	$CollisionPolygon2D.disabled = false
 	$AnimationPlayer.play('idle')
+	$ResetDirection.start()
 
 func _process(delta):
 	position += direction * SPEED * delta

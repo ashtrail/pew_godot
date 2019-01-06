@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://sprites/enemy/enemy_hand_patella.png" type="Texture" id=6]
 [ext_resource path="res://sprites/enemy/enemy_hand_bottom-plier.png" type="Texture" id=7]
 [ext_resource path="res://sprites/enemy/enemy_hand_top-plier.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemy/spawn.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -124,7 +125,50 @@ tracks/8/keys = {
 "values": [ Vector2( 17.2134, 90.1441 ), Vector2( 17.2134, 85.1613 ), Vector2( 17.2134, 90.1441 ), Vector2( 17.2134, 98.2978 ), Vector2( 17.2134, 90.1441 ) ]
 }
 
-[node name="Enemy" type="Area2D"]
+[sub_resource type="Animation" id=2]
+
+resource_name = "spawn"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spawn:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Spawn:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Enemy" type="Area2D" index="0"]
 
 z_index = 1
 input_pickable = true
@@ -147,13 +191,14 @@ SCORE_VALUE = 1
 process_mode = 1
 wait_time = 0.5
 one_shot = false
-autostart = true
+autostart = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
 visible = false
+position = Vector2( 1.35895, -0.452988 )
 build_mode = 0
-polygon = PoolVector2Array( -40.3067, -129.26, -22.7232, -137.074, 19.7702, -138.784, 44.6801, -126.329, 61.5309, -83.8356, 62.9962, -17.8976, 56.8909, -14.2344, 68.6132, 50.2384, 67.1479, 68.5545, 89.6157, 82.9632, 96.6979, 99.0813, 85.9524, 121.305, 65.1942, 131.074, 58.6004, 136.69, 15.1301, 136.69, -31.5149, 117.642, -42.2604, 111.781, -46.6563, 79.5442, -24.4327, 62.6933, -24.9211, 48.2847, -40.5509, 45.5983, -58.3786, 70.0198, -82.0674, 72.2177, -96.2319, 60.7396, -96.7203, 41.6908, -84.998, 33.3875, -68.3914, 39.0045, -63.7513, 33.1433, -68.8798, 15.0714, -87.4402, 27.7706, -103.314, 18.4904, -106.245, -7.88478, -74.741, -26.4451, -49.5869, -12.5249, -62.286, -91.1621 )
+polygon = PoolVector2Array( -45.4907, -134.808, -25.5593, -149.757, 29.7048, -150.663, 60.5078, -127.561, 67.3026, -31.5278, 56.8909, -14.2344, 68.6615, 54.0863, 94.4816, 69.9408, 96.6979, 99.0813, 74.5503, 126.111, -18.7646, 123.393, -42.2604, 111.781, -57.6307, 68.8537, -86.6217, 76.1014, -106.553, 54.3581, -108.818, -9.9657, -74.741, -26.4451, -49.5869, -12.5249, -57.2683, -92.2277 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
@@ -163,14 +208,18 @@ playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/idle = SubResource( 1 )
+anims/spawn = SubResource( 2 )
 blend_times = [  ]
 
 [node name="Body" type="Sprite" parent="." index="3"]
 
+editor/display_folded = true
+visible = false
+_sections_unfolded = [ "Visibility" ]
+
 [node name="Wheels" type="Sprite" parent="Body" index="0"]
 
-position = Vector2( 17.2134, 89.4398 )
-rotation = 0.00454162
+position = Vector2( 17.2134, 90.1441 )
 texture = ExtResource( 2 )
 offset = Vector2( -17.2934, -99.3856 )
 
@@ -182,15 +231,13 @@ offset = Vector2( -20.102, -38.9573 )
 
 [node name="Head" type="Sprite" parent="Body" index="2"]
 
-position = Vector2( 7.41837, -19.2314 )
-rotation = -0.0170496
+position = Vector2( 7.41837, -20.3838 )
 texture = ExtResource( 4 )
 offset = Vector2( -1.62018, 7.3378 )
 
 [node name="Arm" type="Sprite" parent="Body" index="3"]
 
-position = Vector2( -6.18081, 19.4789 )
-scale = Vector2( 1.00794, 1 )
+position = Vector2( -5.26523, 19.4789 )
 texture = ExtResource( 5 )
 offset = Vector2( 5.26523, -19.4789 )
 
@@ -203,17 +250,23 @@ offset = Vector2( 55.0936, -22.6498 )
 [node name="BottomPlier" type="Sprite" parent="Body/Arm/Hand" index="0"]
 
 position = Vector2( 0.905945, 9.96567 )
-rotation = -0.0566515
 texture = ExtResource( 7 )
 offset = Vector2( 52.357, -32.6155 )
 
 [node name="TopPlier" type="Sprite" parent="Body/Arm/Hand" index="1"]
 
 position = Vector2( -1.35898, -14.9485 )
-rotation = 0.0914301
 texture = ExtResource( 8 )
 offset = Vector2( 56.4526, -7.70132 )
 _sections_unfolded = [ "Animation", "Region" ]
+
+[node name="Spawn" type="Sprite" parent="." index="4"]
+
+visible = false
+show_behind_parent = true
+position = Vector2( 32.6149, 99.2036 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Visibility" ]
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 

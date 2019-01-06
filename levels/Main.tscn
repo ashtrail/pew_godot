@@ -130,11 +130,7 @@ shape = SubResource( 3 )
 position = Vector2( 240, 2400 )
 shape = SubResource( 3 )
 
-[connection signal="game_over" from="Player" to="." method="_on_Player_game_over"]
-
 [connection signal="hp_updated" from="Player" to="UI/HUD" method="_on_Player_hp_updated"]
-
-[connection signal="score_updated" from="Player" to="." method="_on_Player_score_updated"]
 
 [connection signal="score_updated" from="Player" to="UI/HUD" method="_on_Player_score_updated"]
 

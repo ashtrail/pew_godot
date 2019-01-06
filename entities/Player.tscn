@@ -516,7 +516,7 @@ tracks/6/keys = {
 custom_solver_bias = 0.0
 radius = 89.8103
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 4.05205, -0.0920916 )
 input_pickable = false
