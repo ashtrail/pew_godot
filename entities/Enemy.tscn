@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://sprites/enemy/enemy_hand_bottom-plier.png" type="Texture" id=7]
 [ext_resource path="res://sprites/enemy/enemy_hand_top-plier.png" type="Texture" id=8]
 [ext_resource path="res://sprites/enemy/spawn.png" type="Texture" id=9]
+[ext_resource path="res://sprites/smoke.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -167,6 +168,83 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("SmokeExplosion:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Gradient" id=3]
+
+offsets = PoolRealArray( 0.0015083, 0.170437, 0.526395, 0.838612, 1 )
+colors = PoolColorArray( 0.328125, 0.328125, 0.328125, 1, 0.621094, 0.621094, 0.621094, 1, 0.875, 0.875, 0.875, 1, 0.997213, 0.997213, 0.997213, 0.173857, 1, 1, 1, 0.15502 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="Curve" id=5]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0.00284481, 0.969308 ), 0.0, 0.0, 0, 0, Vector2( 0.997667, 0.429136 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+
+flags = 4
+width = 2048
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 90, 50, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 40.0
+flatness = 0.0
+gravity = Vector3( 0, 200, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 42.27
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.5
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+hue_variation = 1.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
 [node name="Enemy" type="Area2D" index="0"]
 
@@ -195,7 +273,6 @@ autostart = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
-visible = false
 position = Vector2( 1.35895, -0.452988 )
 build_mode = 0
 polygon = PoolVector2Array( -45.4907, -134.808, -25.5593, -149.757, 29.7048, -150.663, 60.5078, -127.561, 67.3026, -31.5278, 56.8909, -14.2344, 68.6615, 54.0863, 94.4816, 69.9408, 96.6979, 99.0813, 74.5503, 126.111, -18.7646, 123.393, -42.2604, 111.781, -57.6307, 68.8537, -86.6217, 76.1014, -106.553, 54.3581, -108.818, -9.9657, -74.741, -26.4451, -49.5869, -12.5249, -57.2683, -92.2277 )
@@ -267,6 +344,30 @@ show_behind_parent = true
 position = Vector2( 32.6149, 99.2036 )
 texture = ExtResource( 9 )
 _sections_unfolded = [ "Visibility" ]
+
+[node name="SmokeExplosion" type="Particles2D" parent="." index="5"]
+
+position = Vector2( 5.37659, 9.51247 )
+rotation = -1.5708
+emitting = false
+amount = 100
+lifetime = 0.3
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.5
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 10 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 
