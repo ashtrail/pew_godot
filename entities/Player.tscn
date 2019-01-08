@@ -18,7 +18,6 @@
 
 [sub_resource type="Animation" id=1]
 
-resource_name = "idle"
 length = 1.2
 loop = true
 step = 0.1
@@ -193,7 +192,6 @@ tracks/13/keys = {
 
 [sub_resource type="Animation" id=2]
 
-resource_name = "moving"
 length = 1.0
 loop = true
 step = 0.1
@@ -368,7 +366,6 @@ tracks/13/keys = {
 
 [sub_resource type="Animation" id=3]
 
-resource_name = "idle"
 length = 1.2
 loop = true
 step = 0.1
@@ -423,7 +420,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=4]
 
-resource_name = "shooting"
 length = 0.3
 loop = false
 step = 0.1
@@ -595,7 +591,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Gravity", "Scale" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 4.05205, -0.0920916 )
 z_index = 1
@@ -618,7 +614,6 @@ autostart = false
 
 [node name="Body" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 rotation = -0.00118727
 
 [node name="Chest" type="Sprite" parent="Body" index="0"]
@@ -626,6 +621,7 @@ rotation = -0.00118727
 position = Vector2( -5.40364, -5.34869 )
 texture = ExtResource( 3 )
 offset = Vector2( 5.40364, 5.34869 )
+_sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="LeftArm" type="Sprite" parent="Body" index="1"]
 
@@ -739,6 +735,15 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
+[node name="HurtBlink" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 0.15
+one_shot = true
+autostart = false
+
 [connection signal="animation_finished" from="FaceAnimator" to="." method="_on_FaceAnimator_animation_finished"]
+
+[connection signal="timeout" from="HurtBlink" to="." method="_on_HurtBlink_timeout"]
 
 
