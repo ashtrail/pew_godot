@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://themes/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://levels/GameOver.gd" type="Script" id=2]
+[ext_resource path="res://bgm/bensound-jazzyfrenchy.ogg" type="AudioStream" id=3]
 
 [node name="GameOver" type="Control"]
 
@@ -122,5 +123,14 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 0.7
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 

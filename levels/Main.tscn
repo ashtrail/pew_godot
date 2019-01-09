@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/Main.gd" type="Script" id=1]
 [ext_resource path="res://entities/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://utils/AcceleratingTimer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://bgm/bensound-jazzyfrenchy.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -25,7 +26,7 @@ custom_solver_bias = 0.0
 a = Vector2( -192, 0 )
 b = Vector2( 2688, 0 )
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 Enemy = ExtResource( 2 )
@@ -129,6 +130,15 @@ shape = SubResource( 3 )
 
 position = Vector2( 240, 2400 )
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="hp_updated" from="Player" to="UI/HUD" method="_on_Player_hp_updated"]
 

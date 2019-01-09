@@ -25,3 +25,5 @@ func _on_Player_game_over():
 func _on_Player_score_updated(score):
 	if score > 0:
 		$SpawnTimer.accelerate()
+	if score == 50 or score == 100 or score == 150:
+		$AudioStreamPlayer.pitch_scale += 0.1
