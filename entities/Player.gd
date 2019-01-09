@@ -68,6 +68,7 @@ func _on_Enemy_killed(score_value):
 func take_damage(damage):
 	hp -= damage
 	$Body.modulate = Color(1, 0, 0);
+	$FaceAnimator.play('hurt')
 	$HurtBlink.start()
 	if hp <= 0:
 		die()
@@ -79,7 +80,7 @@ func die():
 
 
 func _on_FaceAnimator_animation_finished(anim_name):
-	if anim_name == 'shooting':
+	if anim_name == 'shooting' or anim_name == 'hurt':
 		$FaceAnimator.play('idle')
 
 func _on_HurtBlink_timeout():
