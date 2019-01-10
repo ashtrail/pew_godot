@@ -72,10 +72,10 @@ func take_damage(damage):
 	$AudioStreamPlayer.pitch_scale = 1
 	$FaceAnimator.play('hurt')
 	$HurtBlink.start()
+	emit_signal('hp_updated', hp)
 	if hp <= 0:
+		yield($FaceAnimator, 'animation_finished')
 		die()
-	else:
-		emit_signal('hp_updated', hp)
 
 func die():
 	emit_signal('game_over')

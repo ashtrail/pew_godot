@@ -3,6 +3,8 @@ extends Control
 func update_hp(hp):
 	var heart = null
 	match hp:
+		0:
+			heart = $GridContainer/First
 		1:
 			heart = $GridContainer/Second
 		2:
