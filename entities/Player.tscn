@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://entities/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/Bullet.tscn" type="PackedScene" id=2]
@@ -771,6 +771,37 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Gravity", "Scale" ]
 
+[sub_resource type="Animation" id=14]
+
+resource_name = "blink"
+length = 0.9
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Face:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 4.05205, -0.0920916 )
@@ -795,6 +826,7 @@ autostart = false
 [node name="Body" type="Node2D" parent="." index="1"]
 
 rotation = -0.00118727
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Chest" type="Sprite" parent="Body" index="0"]
 
@@ -847,7 +879,9 @@ blend_times = [  ]
 
 [node name="Face" type="Node2D" parent="." index="3"]
 
+editor/display_folded = true
 position = Vector2( 1.6862, 9.73203 )
+_sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="Wick" type="Sprite" parent="Face" index="0"]
 
@@ -916,14 +950,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
-[node name="HurtBlink" type="Timer" parent="." index="7"]
-
-process_mode = 1
-wait_time = 0.15
-one_shot = true
-autostart = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 19 )
 volume_db = 1.0
@@ -932,8 +959,18 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/blink = SubResource( 14 )
+blend_times = [  ]
+
 [connection signal="animation_finished" from="FaceAnimator" to="." method="_on_FaceAnimator_animation_finished"]
 
-[connection signal="timeout" from="HurtBlink" to="." method="_on_HurtBlink_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 

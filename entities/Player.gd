@@ -68,10 +68,11 @@ func _on_Enemy_killed(score_value):
 
 func take_damage(damage):
 	hp -= damage
+	$CollisionShape2D.disabled = true
 	$Body.modulate = Color(1, 0, 0);
 	$AudioStreamPlayer.pitch_scale = 1
 	$FaceAnimator.play('hurt')
-	$HurtBlink.start()
+	$AnimationPlayer.play('blink')
 	emit_signal('hp_updated', hp)
 	if hp <= 0:
 		yield($FaceAnimator, 'animation_finished')
@@ -82,8 +83,12 @@ func die():
 
 
 func _on_FaceAnimator_animation_finished(anim_name):
-	if anim_name == 'shooting' or anim_name == 'hurt':
-		$FaceAnimator.play('idle')
+	match anim_name:
+		'hurt':
+			continue
+		'shooting':
+			$FaceAnimator.play('idle')
 
-func _on_HurtBlink_timeout():
+func _on_AnimationPlayer_animation_finished(anim_name):
 	$Body.modulate = Color(1, 1, 1);
+	$CollisionShape2D.disabled = false
