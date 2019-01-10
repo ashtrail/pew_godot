@@ -15,6 +15,7 @@ func _ready():
 	yield($AnimationPlayer, 'animation_finished')
 	$CollisionPolygon2D.disabled = false
 	$AnimationPlayer.play('idle')
+	$AudioStreamPlayer.pitch_scale = 1 + rand_range(-0.2, 0.2)
 	$ResetDirection.start()
 
 func _process(delta):
@@ -39,13 +40,17 @@ func reset_direction():
 func _on_Enemy_body_entered(body):
 	if body.is_in_group('bullets'):
 		body.queue_free()
-		die()
+		shot()
 	elif body.is_in_group('player'):
 		body.take_damage(CONTACT_DAMAGE)
 		die()
 
-func die():
+func shot():
 	emit_signal('died', SCORE_VALUE)
+	$AudioStreamPlayer.play()
+	die()
+
+func die():
 	direction = Vector2()
 	$ResetDirection.stop()
 	$CollisionPolygon2D.disabled = true

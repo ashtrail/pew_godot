@@ -26,6 +26,7 @@ func _ready():
 func shoot():
 	if not $FireRate.is_stopped():
 		return
+	$AudioStreamPlayer.pitch_scale = 1 + rand_range(0.0, 0.2)
 	$FaceAnimator.play('shooting')
 	var bullet_dir = -(position - get_global_mouse_position())
 	var bullet = Bullet.instance()
@@ -68,6 +69,7 @@ func _on_Enemy_killed(score_value):
 func take_damage(damage):
 	hp -= damage
 	$Body.modulate = Color(1, 0, 0);
+	$AudioStreamPlayer.pitch_scale = 1
 	$FaceAnimator.play('hurt')
 	$HurtBlink.start()
 	if hp <= 0:

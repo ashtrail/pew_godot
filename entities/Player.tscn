@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://entities/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/Bullet.tscn" type="PackedScene" id=2]
@@ -14,10 +14,12 @@
 [ext_resource path="res://sprites/player/face/player_shooting_mouth.png" type="Texture" id=12]
 [ext_resource path="res://sprites/player/face/player_shooting_eye_left.png" type="Texture" id=13]
 [ext_resource path="res://sprites/player/face/player_shooting_eye_right.png" type="Texture" id=14]
-[ext_resource path="res://sprites/player/face/shoot/mouth.png" type="Texture" id=15]
-[ext_resource path="res://sprites/player/face/shoot/left_eye.png" type="Texture" id=16]
-[ext_resource path="res://sprites/player/face/shoot/right_eye.png" type="Texture" id=17]
-[ext_resource path="res://sprites/player/dust.png" type="Texture" id=18]
+[ext_resource path="res://sfx/hurt.wav" type="AudioStream" id=15]
+[ext_resource path="res://sprites/player/face/shoot/mouth.png" type="Texture" id=16]
+[ext_resource path="res://sprites/player/face/shoot/left_eye.png" type="Texture" id=17]
+[ext_resource path="res://sprites/player/face/shoot/right_eye.png" type="Texture" id=18]
+[ext_resource path="res://sfx/shot.wav" type="AudioStream" id=19]
+[ext_resource path="res://sprites/player/dust.png" type="Texture" id=20]
 
 [sub_resource type="Animation" id=1]
 
@@ -457,6 +459,54 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Vector2( 1.01709, 1.03236 ), Vector2( 1, 1 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("AudioStreamPlayer:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AudioStreamPlayer:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 5.0, 1.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -527,7 +577,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 16 ), ExtResource( 9 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Face/LeftEye:texture")
@@ -539,7 +589,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ), ExtResource( 16 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 10 ), ExtResource( 17 ), ExtResource( 10 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Face/RightEye:texture")
@@ -551,7 +601,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 11 ), ExtResource( 17 ), ExtResource( 11 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 18 ), ExtResource( 11 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Face/Mouth:position")
@@ -612,6 +662,30 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.902107, 0.935553 ), Vector2( 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AudioStreamPlayer:stream")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("AudioStreamPlayer:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="CircleShape2D" id=6]
@@ -836,7 +910,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 13 )
-texture = ExtResource( 18 )
+texture = ExtResource( 20 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -848,6 +922,15 @@ process_mode = 1
 wait_time = 0.15
 one_shot = true
 autostart = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 19 )
+volume_db = 1.0
+pitch_scale = 1.2
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="animation_finished" from="FaceAnimator" to="." method="_on_FaceAnimator_animation_finished"]
 

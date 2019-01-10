@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entities/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/enemy_wheels.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://sprites/enemy/spawn.png" type="Texture" id=9]
 [ext_resource path="res://sprites/smoke.png" type="Texture" id=10]
 [ext_resource path="res://sprites/enemy/gear.png" type="Texture" id=11]
+[ext_resource path="res://sfx/kill.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -137,6 +138,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AudioStreamPlayer:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = false
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -461,7 +474,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Color", "Emission Shape", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="Enemy" type="Area2D" index="0"]
+[node name="Enemy" type="Area2D"]
 
 z_index = 2
 input_pickable = true
@@ -609,6 +622,15 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 
